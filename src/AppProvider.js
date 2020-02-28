@@ -9,7 +9,7 @@ const AppProvider = props => {
 
   // Données partagées du context
   const initialValue = {
-    cart: cart,
+    cart,
     updateCart
   };
 
