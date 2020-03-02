@@ -1,9 +1,10 @@
 import React from "react";
-import MiniCart from "./MiniCart";
+import MiniCart from "../MiniCart/MiniCart";
+import "./Header.scss";
 
 const Header = () => {
   return (
-    <header className="App-header">
+    <header className="header">
       <h1>Henri Potier's Library</h1>
       <MiniCart />
     </header>

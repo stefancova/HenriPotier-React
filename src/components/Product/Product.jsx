@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import MainContext from "../context/MainContext";
+import MainContext from "../../context/MainContext";
+import "./Product.scss";
 
 function Product({ product }) {
   //Get Context

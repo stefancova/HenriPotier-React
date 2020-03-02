@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import AppProvider from "./AppProvider";
-import Cart from "./components/Cart";
-import Header from "./components/Header";
-import Products from "./components/Products";
+import Cart from "./components/Cart/Cart";
+import Header from "./components/Header/Header";
+import Products from "./components/Products/Products";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="container">
       <AppProvider>
         <Header />
         <Router>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Product from "./Product";
+import Product from "../Product/Product";
+import "./Products.scss";
 
 const Products = () => {
   const [data, setData] = useState({ products: [] });
@@ -16,8 +17,7 @@ const Products = () => {
 
   return (
     <section>
-      <h1>Products</h1>
-      <ul>
+      <ul className="products-list columns is-multiline">
         {data.length ? (
           data.map(product => {
             return <Product key={product.isbn} product={product} />;
