@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import MainContext from "../../context/MainContext";
 import Product from "../Product/Product";
+import Search from "../Search/Search";
 import "./Products.scss";
 
 const Products = () => {
   const [data, setData] = useState({ products: [] });
-  const [search, setSearch] = useState("");
+  const context = useContext(MainContext);
 
+  // FetchData
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios("http://henri-potier.xebia.fr/books");
@@ -15,10 +18,12 @@ const Products = () => {
     fetchData();
   }, []);
 
+  // TODO : Pourquoi getProducts est appellé automatiquement à chaque refresh du context
   const getProducts = () => {
+    console.log("getProducts");
     return data
       .filter(product => {
-        return product.title.toLowerCase().indexOf(search) !== -1;
+        return product.title.toLowerCase().indexOf(context.search) !== -1;
       })
       .map(product => {
         return <Product key={product.isbn} product={product} />;
@@ -27,17 +32,7 @@ const Products = () => {
 
   return (
     <section>
-      <p>
-        stocker dans le context les resultats de la recherche et non la
-        recherche
-      </p>
-      <form className="form">
-        <input
-          type=""
-          placeholder="Enter search..."
-          onChange={e => setSearch(e.target.value.toLowerCase())}
-        />
-      </form>
+      <Search />
       <ul className="products-list columns is-multiline">
         {data.length ? getProducts() : <p>LOADING...</p>}
       </ul>

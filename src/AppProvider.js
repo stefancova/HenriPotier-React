@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import MainContext from "./context/MainContext";
 
 const AppProvider = props => {
-  // State cart
+  // States
   const [cart, setCart] = useState(0);
+  const [search, setSearch] = useState("");
 
   const updateCart = value => setCart(cart + value);
 
-  // Données partagées du context
+  // Données/méthodes partagées du context
   const initialValue = {
+    search,
+    setSearch,
     cart,
     updateCart
   };
