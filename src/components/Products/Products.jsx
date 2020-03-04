@@ -15,31 +15,31 @@ const Products = () => {
     fetchData();
   }, []);
 
-  const handleInput = e => {
-    setSearch(e.target.value.toLowerCase());
+  const getProducts = () => {
+    return data
+      .filter(product => {
+        return product.title.toLowerCase().indexOf(search) !== -1;
+      })
+      .map(product => {
+        return <Product key={product.isbn} product={product} />;
+      });
   };
 
   return (
     <section>
+      <p>
+        stocker dans le context les resultats de la recherche et non la
+        recherche
+      </p>
       <form className="form">
         <input
           type=""
           placeholder="Enter search..."
-          onChange={e => handleInput(e)}
+          onChange={e => setSearch(e.target.value.toLowerCase())}
         />
       </form>
       <ul className="products-list columns is-multiline">
-        {data.length ? (
-          data
-            .filter(product => {
-              return product.title.toLowerCase().indexOf(search) !== -1;
-            })
-            .map(product => {
-              return <Product key={product.isbn} product={product} />;
-            })
-        ) : (
-          <p>LOADING...</p>
-        )}
+        {data.length ? getProducts() : <p>LOADING...</p>}
       </ul>
     </section>
   );
