@@ -6,14 +6,17 @@ const AppProvider = props => {
   const [cart, setCart] = useState(0);
   const [search, setSearch] = useState("");
 
-  const updateCart = value => setCart(cart + value);
+  const addToCart = product => {
+    console.log("add to cart", product);
+    setCart(cart + product.price);
+  };
 
   // Données/méthodes partagées du context
   const initialValue = {
     search,
     setSearch,
     cart,
-    updateCart
+    addToCart
   };
 
   return (
