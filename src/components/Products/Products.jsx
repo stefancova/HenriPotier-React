@@ -14,6 +14,7 @@ const Products = () => {
     const fetchData = async () => {
       const result = await axios("http://henri-potier.xebia.fr/books");
       setData(result.data);
+      console.log("result", result.data);
     };
     fetchData();
   }, []);
@@ -26,7 +27,11 @@ const Products = () => {
         return product.title.toLowerCase().indexOf(context.search) !== -1;
       })
       .map(product => {
-        return <Product key={product.isbn} product={product} />;
+        return (
+          <li className="column is-one-quarter" key={product.isbn}>
+            <Product product={product} />
+          </li>
+        );
       });
   };
 

@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import AppProvider from "./AppProvider";
-import Cart from "./components/Cart/Cart";
 import Header from "./components/Header/Header";
-import Products from "./components/Products/Products";
+import PageCart from "./pages/PageCart";
+import PageProduct from "./pages/PageProduct";
+import PageProducts from "./pages/PageProducts";
 
 const App = () => {
   return (
@@ -13,14 +14,9 @@ const App = () => {
         <Header />
         <Router>
           <Switch>
-            <Route exact path="/">
-              <Products />
-            </Route>
-            <Route path="/cart">
-              <Cart />
-            </Route>
-            <Products />
-            <Cart />
+            <Route exact path="/" component={PageProducts} />
+            <Route exact path="/product/:id" component={PageProduct} />
+            <Route path="/cart" component={PageCart} />
           </Switch>
         </Router>
       </AppProvider>
