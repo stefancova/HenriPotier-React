@@ -11,11 +11,11 @@ const App = () => {
   return (
     <div className="container">
       <AppProvider>
-        <Header />
         <Router>
+          <Header />
           <Switch>
             <Route exact path="/" component={PageProducts} />
-            <Route exact path="/product/:id" component={PageProduct} />
+            <Route path="/product/:id" component={PageProduct} />
             <Route path="/cart" component={PageCart} />
           </Switch>
         </Router>

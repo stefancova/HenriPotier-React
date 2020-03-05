@@ -3,11 +3,12 @@ import MainContext from "../../context/MainContext";
 import "./MiniCart.scss";
 
 const MiniCart = () => {
-  const mainContext = useContext(MainContext);
+  // Get cart from Context
+  const { cart } = useContext(MainContext);
 
   return (
     <div style={{ border: "1px solid black" }}>
-      <p>Cart {mainContext.cart}</p>
+      <p>Cart {cart}</p>
     </div>
   );
 };
