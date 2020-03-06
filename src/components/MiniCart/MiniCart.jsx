@@ -8,7 +8,7 @@ const MiniCart = () => {
 
   return (
     <div style={{ border: "1px solid black" }}>
-      <p>Cart {cart}</p>
+      <p>Cart {cart.totalPrice}</p>
     </div>
   );
 };

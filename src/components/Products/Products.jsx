@@ -7,12 +7,11 @@ import "./Products.scss";
 const Products = () => {
   const { products, search } = useContext(MainContext);
 
-  // TODO : Pourquoi getProducts est appellé automatiquement à chaque refresh du context
   const getProducts = () => {
     console.log("getProducts");
     return products
       .filter(product => {
-        return product.title.toLowerCase().indexOf(search) !== -1;
+        return product.title.toLowerCase().includes(search);
       })
       .map(product => {
         return (

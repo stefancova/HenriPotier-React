@@ -5,16 +5,17 @@ import MainContext from "../context/MainContext";
 const PageProduct = () => {
   const { id } = useParams();
   const { products } = useContext(MainContext);
-  let product = {};
-
-  //console.log("Products", products, product);
-  product = products.filter(product => product.isbn === id);
+  const product = products.filter(product => product.isbn === id)[0];
 
   return (
     <>
-      <h2>{product[0].title}</h2>
-      <p>Page produit : {product[0].isbn}</p>
+      <h2>{product.title}</h2>
+      <p>Page produit : {product.isbn}</p>
       <img src={product.cover} alt={product.title}></img>
+      <p>{product.price}</p>
+      {product.synopsis.map((item, i) => {
+        return <p key={i}>{item}</p>;
+      })}
       <Link to="/">Back to products list</Link>
     </>
   );
