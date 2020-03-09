@@ -7,6 +7,7 @@ const PageProduct = () => {
   const { products } = useContext(MainContext);
   const product = products.filter(product => product.isbn === id)[0];
 
+  if (!product) return <p>LOADING ...</p>;
   return (
     <>
       <h2>{product.title}</h2>

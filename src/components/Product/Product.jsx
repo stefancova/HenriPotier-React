@@ -18,7 +18,7 @@ function Product({ product }) {
           <strong className="title is-4">{product.price} €</strong>
         </p>
         <div className="column">
-          <button className="button" onClick={e => addToCart(product)}>
+          <button className="button" onClick={() => addToCart(product)}>
             Add to cart
           </button>
         </div>

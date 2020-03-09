@@ -12,7 +12,7 @@ const AppProvider = props => {
     discount: 0
   });
   const [search, setSearch] = useState("");
-  const [products, setProducts] = useState({ products: [] });
+  const [products, setProducts] = useState([]);
 
   // FetchData from API
   const fetchData = async () => {
