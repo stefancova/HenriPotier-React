@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import MainContext from "../../context/MainContext";
+import AddTocart from "../AddToCart/AddToCart";
 import "./Product.scss";
 
 function Product({ product }) {
-  // Get addToCart from Context
-  const { addToCart } = useContext(MainContext);
-
   return (
     <>
       <Link to={`/product/${product.isbn}`}>
@@ -18,9 +15,7 @@ function Product({ product }) {
           <strong className="title is-4">{product.price} €</strong>
         </p>
         <div className="column">
-          <button className="button" onClick={() => addToCart(product)}>
-            Add to cart
-          </button>
+          <AddTocart product={product} />
         </div>
       </div>
     </>
