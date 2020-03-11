@@ -7,7 +7,10 @@ function AddToCart({ product }) {
   const { addToCart } = useContext(MainContext);
 
   return (
-    <button className="button" onClick={() => addToCart(product)}>
+    <button
+      className="button button is-primary"
+      onClick={() => addToCart(product)}
+    >
       Add to cart
     </button>
   );

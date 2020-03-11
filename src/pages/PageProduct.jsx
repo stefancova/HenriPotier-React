@@ -10,28 +10,31 @@ const PageProduct = () => {
   if (!product) return <p>LOADING ...</p>;
   return (
     <>
-      <hr></hr>
-      <div className="columns">
-        <div className="column is-one-third-tablet">
-          <img src={product.cover} alt={product.title}></img>
-          <p className="has-text-weight-bold is-size-2">
-            Prix : {product.price} €
-          </p>
-          <p>
-            <AddTocart product={product} />
-          </p>
-          <p>Réf : {product.isbn}</p>
+      <hr />
+      <div className="box">
+        <div className="columns ">
+          <div className="column is-one-third-tablet">
+            <figure className="image">
+              <img src={product.cover} alt={product.title}></img>
+            </figure>
+            <p className="has-text-weight-bold is-size-3">
+              Prix : {product.price} €
+            </p>
+            <p>
+              <AddTocart product={product} />
+            </p>
+          </div>
+          <div className="column tile">
+            <h2 className="title">{product.title}</h2>
+            {product.synopsis.map((item, i) => {
+              return <p key={i}>{item}</p>;
+            })}
+          </div>
         </div>
-        <div className="column tile">
-          <h2 className="title">{product.title}</h2>
-          {product.synopsis.map((item, i) => {
-            return <p key={i}>{item}</p>;
-          })}
-        </div>
+        <p>
+          <Link to="/">&laquo; Back to products list</Link>
+        </p>
       </div>
-      <p>
-        <Link to="/">Back to products list</Link>
-      </p>
     </>
   );
 };
