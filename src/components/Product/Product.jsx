@@ -7,7 +7,7 @@ function Product({ product }) {
   return (
     <>
       <Link to={`/product/${product.isbn}`}>
-        <h2 className="title is-6">{product.title}</h2>
+        <h2 className="product-title title is-6">{product.title}</h2>
         <img src={product.cover} alt={product.title}></img>
       </Link>
       <div className="columns">

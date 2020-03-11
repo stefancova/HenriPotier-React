@@ -5,9 +5,11 @@ import "./Header.scss";
 
 const Header = () => {
   return (
-    <header className="header">
-      <h1>
-        <Link to="/">HomeHenri Potier's Library</Link>
+    <header className="header is-relative">
+      <h1 className="is-size-5-mobile is-size-2-tablet is-uppercase">
+        <Link to="/" className="has-text-info">
+          Henri Potier's Library
+        </Link>
       </h1>
       <MiniCart />
     </header>
