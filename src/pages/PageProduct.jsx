@@ -1,11 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AddTocart from "../components/AddToCart/AddToCart";
 import MainContext from "../context/MainContext";
 const PageProduct = () => {
+  let nbParagraph = 1;
   const { id } = useParams();
   const { products } = useContext(MainContext);
   const product = products.filter(product => product.isbn === id)[0];
+  const [hidden, setHidden] = useState(true);
+
+  const getSynopsis = () => {
+    hidden ? (nbParagraph = 1) : (nbParagraph = product.synopsis.length);
+    let description = product.synopsis.slice(0, nbParagraph).map((item, i) => {
+      return <p key={i}>{hidden ? (item += "...") : item}</p>;
+    });
+    return description;
+  };
 
   if (!product) return <p>LOADING ...</p>;
   return (
@@ -26,9 +36,12 @@ const PageProduct = () => {
           </div>
           <div className="column tile">
             <h2 className="title">{product.title}</h2>
-            {product.synopsis.map((item, i) => {
-              return <p key={i}>{item}</p>;
-            })}
+            <div className="synopsis">
+              {getSynopsis()}
+              <button className="btn-show" onClick={() => setHidden(!hidden)}>
+                {hidden ? "Show more" : "Show less"}
+              </button>
+            </div>
           </div>
         </div>
         <p>
