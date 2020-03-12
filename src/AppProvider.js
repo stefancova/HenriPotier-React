@@ -46,7 +46,6 @@ const AppProvider = props => {
   };
 
   const addToCart = product => {
-    console.log("Add to cart", product);
     const productExistInCart = cart.items.find(
       item => item.product.isbn === product.isbn
     );
@@ -56,6 +55,23 @@ const AppProvider = props => {
       //TODO: only store ISBN ?
       cart.items.push({ product: product, quantity: 1 });
     }
+    saveCart();
+  };
+
+  const removeCartItem = item => {
+    cart.items.splice(
+      cart.items.findIndex(it => it.product.isbn === item.product.isbn),
+      1
+    );
+    saveCart();
+  };
+
+  const changeCartItemQuantity = (item, quantity) => {
+    const product = cart.items.find(
+      it => it.product.isbn === item.product.isbn
+    );
+    product.quantity += quantity;
+    if (product.quantity === 0) removeCartItem(item);
     saveCart();
   };
 
@@ -73,7 +89,9 @@ const AppProvider = props => {
     search,
     setSearch,
     cart,
-    addToCart
+    addToCart,
+    removeCartItem,
+    changeCartItemQuantity
   };
 
   return (

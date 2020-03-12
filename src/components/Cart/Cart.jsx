@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import MainContext from "../../context/MainContext";
 
 const Cart = () => {
-  const { cart } = useContext(MainContext);
+  const { cart, removeCartItem, changeCartItemQuantity } = useContext(
+    MainContext
+  );
   const items = cart.items;
-  console.log("items", items);
 
   if (items.length === 0) {
     return <h1 className="is-size-1">Votre panier est vide</h1>;
@@ -12,8 +13,9 @@ const Cart = () => {
 
   return (
     <>
-      <h1>Panier</h1>
-      <table className="table is-bordered">
+      <h1 className="title is-size-4 has-text-centered">Panier</h1>
+      <hr></hr>
+      <table className="table is-bordered is-fullwidth is-centered">
         <thead>
           <tr>
             <th></th>
@@ -37,10 +39,18 @@ const Cart = () => {
             return (
               <tr key={item.product.isbn}>
                 <td>
-                  <button>X</button>
+                  <button onClick={() => removeCartItem(item)}>X</button>
                 </td>
                 <td>{item.product.title}</td>
-                <td>{item.quantity}</td>
+                <td>
+                  {item.quantity}{" "}
+                  <button onClick={() => changeCartItemQuantity(item, 1)}>
+                    +
+                  </button>
+                  <button onClick={() => changeCartItemQuantity(item, -1)}>
+                    -
+                  </button>
+                </td>
                 <td>{item.product.price} €</td>
                 <td>{item.quantity * item.product.price} €</td>
               </tr>
