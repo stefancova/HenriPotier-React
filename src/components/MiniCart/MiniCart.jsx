@@ -5,11 +5,11 @@ import "./MiniCart.scss";
 
 const MiniCart = () => {
   // Get cart from Context
-  const { cart } = useContext(MainContext);
+  const { cartTotal, cartDiscount } = useContext(MainContext);
 
   return (
     <Link to="/cart" className="minicart">
-      <p>{cart.totalPrice} €</p>
+      <p>{cartTotal - cartDiscount} €</p>
       <p></p>
     </Link>
   );

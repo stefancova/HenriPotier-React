@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import MainContext from "../../context/MainContext";
 
 const Cart = () => {
-  const { cart, removeCartItem, changeCartItemQuantity } = useContext(
-    MainContext
-  );
-  const items = cart.items;
+  const {
+    cart,
+    cartTotal,
+    cartDiscount,
+    removeCartItem,
+    changeCartItemQuantity
+  } = useContext(MainContext);
 
-  if (items.length === 0) {
+  if (cart.items.length === 0) {
     return <h1 className="is-size-1">Votre panier est vide</h1>;
   }
 
@@ -30,12 +33,12 @@ const Cart = () => {
             <td></td>
             <td colSpan="3">TOTAL</td>
             <td>
-              <b># totalPrice - discount #</b>
+              <b>{cartTotal - cartDiscount} €</b>
             </td>
           </tr>
         </tfoot>
         <tbody>
-          {items.map(item => {
+          {cart.items.map(item => {
             return (
               <tr key={item.product.isbn}>
                 <td>
@@ -59,12 +62,12 @@ const Cart = () => {
           <tr>
             <td></td>
             <td colSpan="3">SOUS-TOTAL</td>
-            <td> {cart.totalPrice} €</td>
+            <td> {cartTotal} €</td>
           </tr>
           <tr>
             <td></td>
             <td colSpan="3">Remise</td>
-            <td>#discount</td>
+            <td>{cartDiscount} €</td>
           </tr>
         </tbody>
       </table>
