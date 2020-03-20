@@ -97,29 +97,25 @@ const AppProvider = props => {
   };
 
   const computeBestOffers = offers => {
-    let percentageOffer = 0;
-    let minusOffer = 0;
-    let sliceOffer = 0;
     const bestOffers = [];
 
     offers.forEach(offer => {
       switch (offer.type) {
         case "percentage":
-          if (percentageOffer > 0) bestOffers.push(percentageOffer);
+          if (offer.value > 0) bestOffers.push(offer.value);
           break;
         case "minus":
-          minusOffer = offer.value;
-          if (minusOffer > 0) bestOffers.push(minusOffer);
+          if (offer.value > 0) bestOffers.push(offer.value);
           break;
         case "slice":
-          sliceOffer = Math.floor(cartTotal / offer.sliceValue) * offer.value;
+          const sliceOffer =
+            Math.floor(cartTotal / offer.sliceValue) * offer.value;
           if (sliceOffer > 0) bestOffers.push(sliceOffer);
           break;
         default:
           console.log("Unexpected offer.type");
       }
     });
-    console.log("P-M-S", percentageOffer, minusOffer, sliceOffer);
     console.log("best offers", Math.max(...bestOffers));
 
     setCartDiscount(Math.round(Math.max(...bestOffers) * 100) / 100);
